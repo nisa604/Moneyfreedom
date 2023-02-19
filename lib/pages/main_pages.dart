@@ -2,7 +2,7 @@
  * @Author: Your name
  * @Date:   2023-02-12 07:56:48
  * @Last Modified by:   Your name
- * @Last Modified time: 2023-02-16 13:27:47
+ * @Last Modified time: 2023-02-19 22:30:44
  */
 import 'package:calendar_appbar/calendar_appbar.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +104,7 @@ class MainPagesState extends State<MainPages> {
                 onPressed: () {
                   ontaptapped(1);
                 },
-                icon: Icon(Icons.analytics))
+                icon: Icon(Icons.bar_chart))
           ]),
         ));
   }

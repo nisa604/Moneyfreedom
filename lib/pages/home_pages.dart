@@ -2,7 +2,7 @@
  * @Author: Your name
  * @Date:   2023-02-12 14:00:35
  * @Last Modified by:   Your name
- * @Last Modified time: 2023-02-16 14:10:02
+ * @Last Modified time: 2023-02-19 22:49:52
  */
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,17 +19,24 @@ class HomePages extends StatefulWidget {
 }
 
 class _HomePagesState extends State<HomePages> {
-  final List<Widget> _children = [
-    monthlist(),
-  ]; // untuk pemanggilan button dibawah
-  int currentIndex = 0;
+  List<String> Bulan = [
+    'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  ];
+  String? selectedItem = 'Januari';
 
-  void ontap(int index) {
-    //untuk memanggil isi buttonnya
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  List<String> Pilihan = ['Harian', 'Bulanan', 'Tahunan', 'Custom'];
+  String? selected = '';
 
   @override
   Widget build(BuildContext context) {
@@ -96,30 +103,121 @@ class _HomePagesState extends State<HomePages> {
                   borderRadius: BorderRadius.circular(16),
                 ),
               )),
-          // text transaksi
+          //try row
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Card(
-                elevation: 8,
-                child: ListTile(
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                          // alignment: AlignmentDirectional.centerStart,
-                          onPressed: () {
-                            ontap(0);
-                          },
-                          icon: Icon(Icons.list)),
-                      // SizedBox(width: 5)
-                    ],
+            padding: const EdgeInsets.all(8),
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    //decoration: BoxDecoration(color: Colors.transparent),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: DropdownButton<String>(
+                          value: selectedItem,
+                          items: Bulan.map((month) => DropdownMenuItem<String>(
+                                value: month,
+                                child:
+                                    Text(month, style: TextStyle(fontSize: 18)),
+                              )).toList(),
+                          onChanged: (Bulan) =>
+                              setState(() => selectedItem = Bulan),
+                          icon: Icon(Icons.repeat)),
+                    ),
                   ),
-                  title: Text(
-                    "Februari",
-                    style: GoogleFonts.montserrat(),
-                  ),
-                )),
+                  Container(
+                    // decoration: BoxDecoration(color: Colors.transparent),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: DropdownButton<String>(
+                          onChanged: (Pilihan) => selected,
+                          // value: selected,
+                          items:
+                              Pilihan.map((pilih) => DropdownMenuItem<String>(
+                                    value: pilih,
+                                    child: Text(pilih),
+                                  )).toList(),
+                          // onChanged: (Pilihan) =>
+                          //     setState(() => selected = Pilihan),
+                          icon: Icon(Icons.tune)),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
+
+          // text transaksi Bulan
+          // DecoratedBox(
+          //     decoration: BoxDecoration(color: Colors.transparent),
+          //     child: Padding(
+          //       padding: EdgeInsets.only(left: 15),
+          //       child: DropdownButton<String>(
+          //         value: selectedItem,
+          //         items: Bulan.map((month) => DropdownMenuItem<String>(
+          //               value: month,
+          //               child: Text(month, style: TextStyle(fontSize: 18)),
+          //             )).toList(),
+          //         onChanged: (Bulan) => setState(() => selectedItem = Bulan),
+          //         icon: Padding(
+          //             padding: EdgeInsets.zero, child: Icon(Icons.list)),
+          //       ),
+          //     )),
+
+          //pilihan bulan atau harian
+          // DecoratedBox(
+          //     decoration: BoxDecoration(color: Colors.transparent),
+          //     child: Padding(
+          //       padding: EdgeInsets.only(left: 15),
+          //       child: DropdownButton<String>(
+          //         value: selected,
+          //         items: Pilihan.map((pilih) => DropdownMenuItem<String>(
+          //               value: pilih,
+          //               child: Text(pilih),
+          //             )).toList(),
+          //         onChanged: (Pilihan) => setState(() => selected = Pilihan),
+          //         icon: Padding(
+          //             padding: EdgeInsets.zero, child: Icon(Icons.list)),
+          //       ),
+          //     )),
+
+          // Padding(
+          // padding: const EdgeInsets.symmetric(horizontal: 8),
+          // child: Card(
+          //     elevation: 8,
+          //     child: ListTile(
+          //       trailing: Row(
+          //         mainAxisSize: MainAxisSize.min,
+          //         children: [
+          //           IconButton(
+          //               // alignment: AlignmentDirectional.centerStart,
+          //               onPressed: () {
+          //                 // Route menu ke halaman utama
+          //                 //   Navigator.pushReplacement(
+          //                 //       context,
+          //                 //       MaterialPageRoute(
+          //                 //           builder: (context) => const monthlist()));
+          //               },
+          //               icon: Icon(Icons.list)),
+          //           DropdownButton<String>(
+          //             value: selectedItem,
+          //             items: Bulan.map((month) => DropdownMenuItem<String>(
+          //                   value: month,
+          //                   child: Text(month, style: TextStyle(fontSize: 8)),
+          //                 )).toList(),
+          //             onChanged: (Bulan) =>
+          //                 setState(() => selectedItem = Bulan),
+          //           )
+          //           // SizedBox(width: 5)
+          //         ],
+          //       ),
+          //       title: Text(
+          //         "Februari",
+          //         style: GoogleFonts.montserrat(),
+          //       ),
+          //     )),
+          // ),
 
           //list transaksi
           Padding(
@@ -145,6 +243,7 @@ class _HomePagesState extends State<HomePages> {
               ),
             ),
           ),
+
           //list uang masuk
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

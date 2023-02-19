@@ -1,7 +1,7 @@
 # @Author: Your name
 # @Date:   2023-02-09 22:08:55
 # @Last Modified by:   Your name
-# @Last Modified time: 2023-02-16 02:28:35
+# @Last Modified time: 2023-02-19 22:04:08
 name: moneyfreedom
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
@@ -42,6 +42,7 @@ dependencies:
   google_fonts: ^4.0.3
   calendar_appbar: ^0.0.6
   filter_list: ^1.0.2
+  sqflite: ^2.2.4+1
 
 
 dev_dependencies:
